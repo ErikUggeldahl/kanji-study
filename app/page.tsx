@@ -57,7 +57,7 @@ export default async function Home({
       </h2>
       <div className="grid grid-cols-10">
         {kanji.map((k) => (
-          <KanjiBox kanji={k} />
+          <KanjiBox key={k.id} kanji={k} />
         ))}
       </div>
     </div>
@@ -92,6 +92,7 @@ export default async function Home({
       <div className="flex flex-row flex-wrap justify-center gap-8">
         {Array.from({ length: 2200 / 100 }, (_, i) => i).map((i) => (
           <KanjiHundred
+            key={i}
             start={i * 100 + 1}
             kanji={kanji_data.slice(i * 100, (i + 1) * 100)}
           />
