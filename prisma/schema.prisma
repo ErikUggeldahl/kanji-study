@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model kanji {
+  id           Int     @id @default(autoincrement())
+  kanji        String
+  keyword      String
+  components   String?
+  on_reading   String?
+  kun_reading  String?
+  stroke_count Int
+  jlpt         String?
+}
