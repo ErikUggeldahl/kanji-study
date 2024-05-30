@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { createDBClient } from "@/app/lib/database";
 import Image from "next/image";
 
 function kanjiToUnicode(kanji: string): string {
@@ -15,7 +15,7 @@ export default async function KanjiPage({
 }: {
   params: { id: string };
 }) {
-  const prisma = new PrismaClient();
+  const prisma = createDBClient();
   const kanji_data = await prisma.kanji.findUnique({
     where: {
       id: Number(params.id),

@@ -36,3 +36,7 @@ yarn-error.log*
 next-env.d.ts
 public/heisig-kanjis.csv
 public/db_back/
+
+.vercel
+.env
+.env

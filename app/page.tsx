@@ -1,13 +1,16 @@
+import { createClient } from "@libsql/client";
 import { PrismaClient, kanji } from "@prisma/client";
+import { PrismaLibSQL } from "@prisma/adapter-libsql";
 import Link from "next/link";
 import Search from "./search";
+import { createDBClient } from "./lib/database";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: { search: string };
 }) {
-  const prisma = new PrismaClient();
+  const prisma = createDBClient();
   const kanji_data = await prisma.kanji.findMany({
     take: 2200,
     orderBy: {
