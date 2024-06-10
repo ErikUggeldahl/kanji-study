@@ -19,7 +19,7 @@ export default async function KanjiPage({
 
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <div className="flex flex-col items-center text-center gap-2 p-20 shadow-lg">
+      <div className="flex flex-col items-center text-center gap-2 p-20 md:shadow-lg">
         <p>{kanji_data?.id}</p>
         <h1 className="text-xl">{kanji_data?.keyword}</h1>
         <h2 className="text-8xl">{kanji_data?.kanji}</h2>

@@ -55,7 +55,7 @@ export default async function Home({
       <h2 className="text-center">
         {start}-{start + 99}
       </h2>
-      <div className="grid grid-cols-10">
+      <div className="grid grid-cols-5 lg:grid-cols-10">
         {kanji.map((k) => (
           <KanjiBox key={k.id} kanji={k} />
         ))}
@@ -65,7 +65,7 @@ export default async function Home({
 
   const KanjiBox = ({ kanji, large }: { kanji: Kanji; large?: boolean }) => {
     const textSize = large ? "text-lg" : "text-xs";
-    const width = large ? "w-24" : "w-12";
+    const width = large ? "w-24" : "w-16 md:w-16 lg:w-12";
     const height = large ? "h-32" : "";
 
     return (
@@ -83,7 +83,7 @@ export default async function Home({
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-4 md:p-16 lg:p-24">
       <h1>Remembering the Kanji Study Aid</h1>
       <div className="flex flex-col items-center gap-4">
         <Search />

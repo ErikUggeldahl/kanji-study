@@ -24,21 +24,21 @@ export default function Search() {
         placeholder="Search"
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
+        className="w-32"
       />
       <button className="ml-4 p-2 border rounded" type="submit">
         Submit
       </button>
-      {searchParams.get("search") && (
-        <button
-          className="ml-4 p-2 border rounded"
-          onClick={() => {
-            setSearch("");
-            router.replace("/");
-          }}
-        >
-          Clear
-        </button>
-      )}
+      <button
+        className="ml-4 p-2 border rounded"
+        disabled={!searchParams.get("search")}
+        onClick={() => {
+          setSearch("");
+          router.replace("/");
+        }}
+      >
+        Clear
+      </button>
     </form>
   );
 }
