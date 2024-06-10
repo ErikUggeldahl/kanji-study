@@ -39,4 +39,5 @@ public/db_back/
 
 .vercel
 .env
-.env
+*.log
+*.sql

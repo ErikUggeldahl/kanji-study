@@ -1,13 +1,9 @@
-import { createDBClient } from "@/app/lib/database";
+import prisma from "@/app/lib/database";
+import { kanjiToUnicode } from "@/app/lib/kanji-util";
 import Image from "next/image";
 
-function kanjiToUnicode(kanji: string): string {
-  if (kanji.length !== 1) {
-    throw new Error("Input must be a single Kanji character.");
-  }
-
-  const unicodeValue = kanji.charCodeAt(0).toString(16).toUpperCase();
-  return unicodeValue.padStart(5, "0");
+export function generateStaticParams() {
+  return Array.from({ length: 2200 }, (_, i) => ({ id: String(i + 1) }));
 }
 
 export default async function KanjiPage({
@@ -15,7 +11,6 @@ export default async function KanjiPage({
 }: {
   params: { id: string };
 }) {
-  const prisma = createDBClient();
   const kanji_data = await prisma.kanji.findUnique({
     where: {
       id: Number(params.id),
@@ -28,7 +23,12 @@ export default async function KanjiPage({
         <p>{kanji_data?.id}</p>
         <h1 className="text-xl">{kanji_data?.keyword}</h1>
         <h2 className="text-8xl">{kanji_data?.kanji}</h2>
-        <p>Components: {kanji_data?.components}</p>
+        {kanji_data?.primitive_meanings && (
+          <p>Primitive meanings: {kanji_data.primitive_meanings}</p>
+        )}
+        <p>Primitives: {kanji_data?.components || "None"}</p>
+
+        <p>Mnemonic: {kanji_data?.mnemonic || "None"}</p>
         <p>On: {kanji_data?.on_reading}</p>
         <p>Kun: {kanji_data?.kun_reading}</p>
         <div>

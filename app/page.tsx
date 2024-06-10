@@ -1,16 +1,13 @@
-import { createClient } from "@libsql/client";
-import { PrismaClient, kanji } from "@prisma/client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
 import Link from "next/link";
 import Search from "./search";
-import { createDBClient } from "./lib/database";
+import prisma from "./lib/database";
+import { Kanji } from "@prisma/client";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: { search: string };
 }) {
-  const prisma = createDBClient();
   const kanji_data = await prisma.kanji.findMany({
     take: 2200,
     orderBy: {
@@ -52,7 +49,7 @@ export default async function Home({
     kanji,
   }: {
     start: number;
-    kanji: kanji[];
+    kanji: Kanji[];
   }) => (
     <div className="flex flex-col justify-center">
       <h2 className="text-center">
@@ -66,7 +63,7 @@ export default async function Home({
     </div>
   );
 
-  const KanjiBox = ({ kanji, large }: { kanji: kanji; large?: boolean }) => {
+  const KanjiBox = ({ kanji, large }: { kanji: Kanji; large?: boolean }) => {
     const textSize = large ? "text-lg" : "text-xs";
     const width = large ? "w-24" : "w-12";
     const height = large ? "h-32" : "";

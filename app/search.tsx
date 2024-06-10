@@ -11,7 +11,7 @@ export default function Search() {
   const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (search === "") {
-      router.replace(`/`);
+      router.replace("/");
     } else {
       router.replace(`/?search=${search}`);
     }
@@ -33,7 +33,7 @@ export default function Search() {
           className="ml-4 p-2 border rounded"
           onClick={() => {
             setSearch("");
-            router.replace(`/`);
+            router.replace("/");
           }}
         >
           Clear

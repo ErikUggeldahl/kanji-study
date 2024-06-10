@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -8,13 +8,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model kanji {
-  id           Int     @id @default(autoincrement())
-  kanji        String
-  keyword      String
-  components   String?
-  on_reading   String?
-  kun_reading  String?
-  stroke_count Int
-  jlpt         String?
+model Kanji {
+  id                 Int     @id @default(autoincrement())
+  kanji              String
+  keyword            String
+  components         String?
+  on_reading         String?
+  kun_reading        String?
+  stroke_count       Int
+  jlpt               String?
+  mnemonic           String?
+  primitive_meanings String?
+
+  @@map("kanji")
 }
